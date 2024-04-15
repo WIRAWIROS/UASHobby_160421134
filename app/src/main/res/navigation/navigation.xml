@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/hobbyListFragment">
+
+    <fragment
+        android:id="@+id/hobbyListFragment"
+        android:name="com.ubaya.hobbyuts_160421134.view.HobbyListFragment"
+        android:label="fragment_hobby_list"
+        tools:layout="@layout/fragment_hobby_list" >
+        <action
+            android:id="@+id/action_hobbyListFragment_to_hobbyDetailFragment"
+            app:destination="@id/hobbyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hobbyDetailFragment"
+        android:name="com.ubaya.hobbyuts_160421134.view.HobbyDetailFragment"
+        android:label="fragment_hobby_detail"
+        tools:layout="@layout/fragment_hobby_detail" />
+</navigation>

@@ -11,7 +11,7 @@
         android:label="fragment_hobby_list"
         tools:layout="@layout/fragment_hobby_list" >
         <action
-            android:id="@+id/action_hobbyListFragment_to_hobbyDetailFragment"
+            android:id="@+id/action__hobbyDetailFragment"
             app:destination="@id/hobbyDetailFragment" />
     </fragment>
     <fragment

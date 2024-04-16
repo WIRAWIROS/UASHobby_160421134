@@ -1,4 +1,60 @@
 package com.ubaya.hobbyuts_160421134.view
 
-class HobbyListAdapter {
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+import com.ubaya.hobbyuts_160421134.model.Hobby
+import javax.security.auth.callback.Callback
+
+class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
+    : RecyclerView.Adapter<HobbyListAdapter.HobbyViewHolder>()
+{
+    class HobbyViewHolder(var binding: HobbyListItemBinding)
+        : RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HobbyViewHolder {
+        val binding = HobbyListItemBinding.inflate(LayoutInflater.from(parent.context), parent,false)
+        return HobbyViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int {
+        return hobbyList.size
+    }
+
+    override fun onBindViewHolder(holder: HobbyViewHolder, position: Int) {
+        holder.binding.txtID.text = hobbyList[position].id
+        holder.binding.txtName.text = hobbyList[position].nama
+
+        holder.binding.btnDetail.setOnClickListener {
+            val hobbyId = hobbyList[position].id
+            val action = Hobby.actionHobbyDetailFragment(hobbyId.toString())
+            Navigation.findNavController(it).navigate(action)
+        }
+        val picasso = Picasso.Builder(holder.itemView.context)
+        picasso.listener { picasso, uri, exception ->
+            exception.printStackTrace()
+        }
+        picasso.build().load(hobbyList[position].photoUrl)
+            .into(holder.binding.imageView3, object: Callback {
+                override fun onSuccess() {
+                    holder.binding.progressBar2.visibility = View.INVISIBLE
+                    holder.binding.imageView3.visibility = View.VISIBLE
+                }
+
+                override fun onError(e: Exception?) {
+                    Log.e("picasso_error", e.toString())
+                }
+            })
+    }
+    fun updateHobbyList(newHobbyList: ArrayList<Hobby>) {
+        hobbyList.clear()
+        hobbyList.addAll(newHobbyList)
+        notifyDataSetChanged()
+    }
+
+
 }

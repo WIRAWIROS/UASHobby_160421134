@@ -19,4 +19,14 @@
         android:name="com.ubaya.hobbyuts_160421134.view.HobbyDetailFragment"
         android:label="fragment_hobby_detail"
         tools:layout="@layout/fragment_hobby_detail" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.ubaya.hobbyuts_160421134.view.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ubaya.hobbyuts_160421134.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

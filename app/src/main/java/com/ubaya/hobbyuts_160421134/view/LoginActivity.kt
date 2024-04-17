@@ -17,7 +17,6 @@ import org.json.JSONObject
 
 
 class LoginActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(username: String, password: String) {
-        val url = "https://ubaya.me/native/160721029/cerbung/login.php"
+        val url = "http://localhost/utsanmp/signin.php"
 
         val stringRequest = object : StringRequest(
             Request.Method.POST,
@@ -68,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                         val data = jsonObject.getJSONObject("data")
                         val idUser = data.getInt("id")
 
-                        var sharedFile = "com.torimiso.cerbung"
+                        var sharedFile = "com.ubaya.hobbyuts_160421134"
                         var shared: SharedPreferences = getSharedPreferences(sharedFile, Context.MODE_PRIVATE)
                         var editor: SharedPreferences.Editor = shared.edit()
                         editor.putInt("ID", idUser)

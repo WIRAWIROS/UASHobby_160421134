@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.ubaya.hobbyuts_160421134.databinding.HobbyListItemBinding
 import com.ubaya.hobbyuts_160421134.model.Hobby
-import javax.security.auth.callback.Callback
+import com.squareup.picasso.Callback
 
 class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
     : RecyclerView.Adapter<HobbyListAdapter.HobbyViewHolder>()
@@ -26,12 +27,13 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
     }
 
     override fun onBindViewHolder(holder: HobbyViewHolder, position: Int) {
-        holder.binding.txtID.text = hobbyList[position].id
-        holder.binding.txtName.text = hobbyList[position].nama
+        holder.binding.txtJudul.text = hobbyList[position].judul
+        holder.binding.txtNama.text = hobbyList[position].nama
+        holder.binding.txtDesc.text = hobbyList[position].desc
 
         holder.binding.btnDetail.setOnClickListener {
             val hobbyId = hobbyList[position].id
-            val action = Hobby.actionHobbyDetailFragment(hobbyId.toString())
+            val action = HobbyListFragmentDirections.actionHobbyDetailFragment(hobbyId.toString())
             Navigation.findNavController(it).navigate(action)
         }
         val picasso = Picasso.Builder(holder.itemView.context)

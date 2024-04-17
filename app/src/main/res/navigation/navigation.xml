@@ -18,7 +18,11 @@
         android:id="@+id/hobbyDetailFragment"
         android:name="com.ubaya.hobbyuts_160421134.view.HobbyDetailFragment"
         android:label="fragment_hobby_detail"
-        tools:layout="@layout/fragment_hobby_detail" />
+        tools:layout="@layout/fragment_hobby_detail" >
+        <argument
+            android:name="hobbyId"
+            app:argType="string" />
+    </fragment>
     <activity
         android:id="@+id/loginActivity"
         android:name="com.ubaya.hobbyuts_160421134.view.LoginActivity"

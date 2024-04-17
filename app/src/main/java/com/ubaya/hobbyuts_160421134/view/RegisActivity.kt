@@ -24,13 +24,13 @@ class RegisActivity : AppCompatActivity() {
 
         binding.btnBuatAkun.setOnClickListener {
             try {
-                val userName = binding.txtUsernameDaftar.text.toString()
+                val usserName = binding.txtUsernameDaftar.text.toString()
                 val password = binding.txtPassDaftar.text.toString()
                 val confPassword = binding.txtPassConfirm.text.toString()
 
-                if (userName.isNotEmpty() && password.isNotEmpty() && confPassword.isNotEmpty()) {
+                if (usserName.isNotEmpty() && password.isNotEmpty() && confPassword.isNotEmpty()) {
                     if (password == confPassword) {
-                        registerUser(userName, password)
+                        registerUser(usserName, password)
                     } else {
                         throw Exception("Password dan konfirmasi password tidak sama!")
                     }
@@ -49,11 +49,10 @@ class RegisActivity : AppCompatActivity() {
         }
     }
 
-    private fun registerUser(username: String, password: String) {
-        // Log untuk menampilkan data yang akan dikirim ke web service
-        Log.d("RegistrationActivity", "Username: $username, Password: $password")
+    private fun registerUser(ussername: String, password: String) {
+        Log.d("RegisActivity", "Ussername: $ussername, Password: $password")
 
-        val url = "https://ubaya.me/native/160721029/cerbung/regis.php"
+        val url = "http://localhost/utsanmp/daftar.php"
 
         val stringRequest = object : StringRequest(
             Request.Method.POST,
@@ -84,7 +83,7 @@ class RegisActivity : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["username"] = username
+                params["ussername"] = ussername
                 params["password"] = password
                 return params
             }

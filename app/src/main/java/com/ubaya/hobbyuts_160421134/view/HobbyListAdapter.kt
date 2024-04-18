@@ -29,7 +29,7 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
     override fun onBindViewHolder(holder: HobbyViewHolder, position: Int) {
         holder.binding.txtJudul.text = hobbyList[position].judul
         holder.binding.txtNama.text = hobbyList[position].nama
-        holder.binding.txtDesc.text = hobbyList[position].desc
+        holder.binding.txtIsi.text = hobbyList[position].isi
 
         holder.binding.btnDetail.setOnClickListener {
             val hobbyId = hobbyList[position].id

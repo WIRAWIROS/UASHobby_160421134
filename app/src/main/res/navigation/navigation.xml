@@ -3,15 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/hobbyListFragment">
-
+    app:startDestination="@id/loginActivity">
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.ubaya.hobbyuts_160421134.view.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/regisActivity"
+        android:name="com.ubaya.hobbyuts_160421134.view.RegisActivity"
+        android:label="activity_regis"
+        tools:layout="@layout/activity_regis" />
     <fragment
         android:id="@+id/hobbyListFragment"
         android:name="com.ubaya.hobbyuts_160421134.view.HobbyListFragment"
         android:label="fragment_hobby_list"
         tools:layout="@layout/fragment_hobby_list" >
         <action
-            android:id="@+id/action__hobbyDetailFragment"
+            android:id="@+id/action_hobbyDetailFragment"
             app:destination="@id/hobbyDetailFragment" />
     </fragment>
     <fragment
@@ -23,14 +32,4 @@
             android:name="hobbyId"
             app:argType="string" />
     </fragment>
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="com.ubaya.hobbyuts_160421134.view.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.ubaya.hobbyuts_160421134.view.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
 </navigation>

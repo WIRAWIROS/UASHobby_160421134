@@ -21,7 +21,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 
     val TAG = "volleyTag"
 
-    fun fetch() {
+    fun fetch(hobbyId: String) {
         hobbyLoadErrorLD.value = false
         loadingLD.value = true
 
@@ -32,9 +32,17 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
             Request.Method.GET, url, null,
             Response.Listener<JSONObject> { response ->
                 try {
+                    val jsonArray = response.getJSONArray("hobbies")
                     val gson = Gson()
-                    val student = gson.fromJson(response.toString(), Hobby::class.java)
-                    hobbyLD.value = student
+                    for (i in 0 until jsonArray.length()) {
+                        val hobby = gson.fromJson(jsonArray.getJSONObject(i).toString(), Hobby::class.java)
+                        if (hobby.id == hobbyId) {
+                            hobbyLD.value = hobby
+                            loadingLD.value = false
+                            return@Listener
+                        }
+                    }
+                    hobbyLoadErrorLD.value = true
                     loadingLD.value = false
                 } catch (e: Exception) {
                     Log.e(TAG, "Error parsing JSON: ${e.localizedMessage}")
@@ -51,6 +59,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
         jsonObjectRequest.tag = TAG
         queue?.add(jsonObjectRequest)
     }
+
 
     override fun onCleared() {
         super.onCleared()

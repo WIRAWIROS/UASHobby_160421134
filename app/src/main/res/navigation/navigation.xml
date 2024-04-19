@@ -3,17 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginActivity">
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="com.ubaya.hobbyuts_160421134.view.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
-    <activity
-        android:id="@+id/regisActivity"
-        android:name="com.ubaya.hobbyuts_160421134.view.RegisActivity"
-        android:label="activity_regis"
-        tools:layout="@layout/activity_regis" />
+    app:startDestination="@id/hobbyListFragment">
     <fragment
         android:id="@+id/hobbyListFragment"
         android:name="com.ubaya.hobbyuts_160421134.view.HobbyListFragment"
@@ -22,6 +12,9 @@
         <action
             android:id="@+id/action_hobbyDetailFragment"
             app:destination="@id/hobbyDetailFragment" />
+        <action
+            android:id="@+id/action_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/hobbyDetailFragment"
@@ -32,4 +25,9 @@
             android:name="hobbyId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ubaya.hobbyuts_160421134.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.ubaya.hobbyuts_160421134.databinding.HobbyListItemBinding
@@ -34,8 +35,9 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
         holder.binding.btnDetail.setOnClickListener {
             val hobbyId = hobbyList[position].id
             val action = HobbyListFragmentDirections.actionHobbyDetailFragment(hobbyId.toString())
-            Navigation.findNavController(it).navigate(action)
+            it.findNavController().navigate(action)
         }
+
         val picasso = Picasso.Builder(holder.itemView.context)
         picasso.listener { picasso, uri, exception ->
             exception.printStackTrace()

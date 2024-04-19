@@ -37,7 +37,7 @@ class HobbyDetailFragment : Fragment() {
         viewModel.fetch(hobbyId)
 
         viewModel.hobbyLD.observe(viewLifecycleOwner, Observer { hobby ->
-            binding.txtJudul.setText(hobby.id)
+            binding.txtJudul.setText(hobby.judul)
             binding.txtNama.setText(hobby.nama)
             binding.txtIsi.setText(hobby.isi)
 
@@ -53,14 +53,7 @@ class HobbyDetailFragment : Fragment() {
                     }
                 })
         })
-
-
-        binding.btnBck.setOnClickListener {
-
-        }
-        binding.btnNext.setOnClickListener {
-
-        }
     }
+
 
 }

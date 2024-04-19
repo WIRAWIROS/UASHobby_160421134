@@ -94,7 +94,7 @@ android:layout_height="wrap_content">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="252dp"
-            android:text=">"
+            android:text="NEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.544"
             app:layout_constraintStart_toEndOf="@+id/btnBck"
@@ -106,7 +106,7 @@ android:layout_height="wrap_content">
             android:layout_height="wrap_content"
             android:layout_marginStart="68dp"
             android:layout_marginTop="252dp"
-            android:text="<"
+            android:text="BACK"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtIsi" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,9 @@ data class User(
     val namaDepan:String?,
     @SerializedName("namaBelakang")
     val namaBelakang:String?,
-    @SerializedName("ussername")
-    val ussername:String?,
+    @SerializedName("email")
+    val email:String?,
+    @SerializedName("username")
+    val username:String?,
     @SerializedName("password")
     val password:String?)

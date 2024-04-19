@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginUser(ussername: String, password: String) {
+    private fun loginUser(username: String, password: String) {
         val url = "http://localhost/utsanmp/signin.php"
 
         val stringRequest = object : StringRequest(
@@ -94,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
         {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["ussername"] = ussername
+                params["username"] = username
                 params["password"] = password
                 return params
             }

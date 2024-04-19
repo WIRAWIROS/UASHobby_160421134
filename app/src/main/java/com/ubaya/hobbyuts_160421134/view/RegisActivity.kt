@@ -24,13 +24,16 @@ class RegisActivity : AppCompatActivity() {
 
         binding.btnBuatAkun.setOnClickListener {
             try {
-                val usserName = binding.txtUsernameDaftar.text.toString()
+                val namaDepan = binding.txtnamaDepan.text.toString()
+                val namaBelakang = binding.txtNamaBelakang.text.toString()
+                val userName = binding.txtUssername.text.toString()
+                val email = binding.txtEmail.text.toString()
                 val password = binding.txtPassDaftar.text.toString()
                 val confPassword = binding.txtPassConfirm.text.toString()
 
-                if (usserName.isNotEmpty() && password.isNotEmpty() && confPassword.isNotEmpty()) {
+                if (namaDepan.isNotEmpty() && namaBelakang.isNotEmpty() && userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confPassword.isNotEmpty()) {
                     if (password == confPassword) {
-                        registerUser(usserName, password)
+                        registerUser(namaDepan,namaBelakang, userName, email, password)
                     } else {
                         throw Exception("Password dan konfirmasi password tidak sama!")
                     }
@@ -49,8 +52,8 @@ class RegisActivity : AppCompatActivity() {
         }
     }
 
-    private fun registerUser(ussername: String, password: String) {
-        Log.d("RegisActivity", "Ussername: $ussername, Password: $password")
+    private fun registerUser(namaDepan: String, namaBelakang: String, username: String, email: String, password: String) {
+        Log.d("RegisActivity", "Username: $username, Password: $password")
 
         val url = "http://localhost/utsanmp/daftar.php"
 
@@ -83,7 +86,10 @@ class RegisActivity : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["ussername"] = ussername
+                params["namaDepan"] = namaDepan
+                params["namaBelakang"] = namaBelakang
+                params["username"] = username
+                params["email"] = email
                 params["password"] = password
                 return params
             }

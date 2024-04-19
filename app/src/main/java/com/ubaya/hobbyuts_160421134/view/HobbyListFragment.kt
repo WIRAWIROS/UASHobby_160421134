@@ -46,6 +46,16 @@ class HobbyListFragment : Fragment() {
 
     }
     fun observeViewModel() {
+        viewModel.hobbyLD.observe(viewLifecycleOwner, Observer {
+            hobbyListAdapter.updateHobbyList(it)
+        })
+        viewModel.hobbyLoadErrorLD.observe(viewLifecycleOwner, Observer {
+            if(it == true) {
+                binding.txtError.visibility = View.VISIBLE
+            } else {
+                binding.txtError.visibility = View.GONE
+            }
+        })
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
             if(it == true) {
                 binding.recView.visibility = View.GONE

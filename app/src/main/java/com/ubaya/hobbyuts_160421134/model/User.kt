@@ -3,7 +3,7 @@ package com.ubaya.hobbyuts_160421134.model
 import com.google.gson.annotations.SerializedName
 
 data class User(
-    val id:String?,
+    val id:Int?,
     @SerializedName("namaDepan")
     val namaDepan:String?,
     @SerializedName("namaBelakang")

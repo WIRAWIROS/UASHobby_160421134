@@ -8,8 +8,10 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.ubaya.hobbyuts_160421134.model.Hobby
 import org.json.JSONObject
 
@@ -26,7 +28,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
         loadingLD.value = true
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "http://192.168.1.9/hobby/hobby.json"
+        val url = "http://10.0.2.2/hobby/hobby.json"
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -55,11 +57,9 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
                 hobbyLoadErrorLD.value = true
                 loadingLD.value = false
             })
-
         jsonObjectRequest.tag = TAG
         queue?.add(jsonObjectRequest)
     }
-
 
     override fun onCleared() {
         super.onCleared()

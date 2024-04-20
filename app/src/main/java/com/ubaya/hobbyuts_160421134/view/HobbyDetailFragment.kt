@@ -39,7 +39,7 @@ class HobbyDetailFragment : Fragment() {
         viewModel.hobbyLD.observe(viewLifecycleOwner, Observer { hobby ->
             binding.txtJudul.setText(hobby.judul)
             binding.txtNama.setText(hobby.nama)
-            binding.txtIsi.setText(hobby.isi)
+            binding.txtIsi.setText(hobby.paragraf)
 
             Picasso.get()
                 .load(hobby.photoUrl)

@@ -6,9 +6,9 @@ data class Hobby(
     val judul:String?,
     @SerializedName("nama")
     val nama:String?,
-    @SerializedName("deskripsi")
+    @SerializedName("desc")
     val desc:String?,
-    @SerializedName("isi")
-    val isi:String?,
+    @SerializedName("paragraf")
+    val paragraf:String?,
     @SerializedName("photo_url")
     val photoUrl:String?)

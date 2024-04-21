@@ -1,7 +1,7 @@
 package com.ubaya.hobbyuts_160421134.model
 import com.google.gson.annotations.SerializedName
 data class Hobby(
-    val id:String?,
+    val id:Int?,
     @SerializedName("judul")
     val judul:String?,
     @SerializedName("nama")

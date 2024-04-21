@@ -13,7 +13,7 @@ import com.google.gson.reflect.TypeToken
 import com.ubaya.hobbyuts_160421134.model.User
 
 class LoginViewModel (application: Application): AndroidViewModel(application) {
-    val loginResultLD = MutableLiveData<ArrayList<User>>()
+    val loginResultLD = MutableLiveData<ArrayList<User>?>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
     fun loginUser(username: String, password: String) {
@@ -52,8 +52,13 @@ class LoginViewModel (application: Application): AndroidViewModel(application) {
         stringRequest.tag = TAG
         queue?.add(stringRequest)
     }
+    fun clear(){
+        loginResultLD.value = null
+    }
     override fun onCleared() {
         super.onCleared()
         queue?.cancelAll(TAG)
+
     }
+
 }

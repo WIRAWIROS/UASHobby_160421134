@@ -29,15 +29,17 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
 
     override fun onBindViewHolder(holder: HobbyViewHolder, position: Int) {
         holder.binding.txtJudul.text = hobbyList[position].judul
-        holder.binding.txtNama.text = hobbyList[position].nama
+        holder.binding.txtNama.text = "@"+hobbyList[position].nama
         holder.binding.txtIsi.text = hobbyList[position].desc
 
         holder.binding.btnDetail.setOnClickListener {
-            val hobbyId = hobbyList[position].id
-            val action = HobbyListFragmentDirections.actionHobbyDetailFragment(hobbyId.toString())
-            it.findNavController().navigate(action)
+            val action = HobbyListFragmentDirections.actionHobbyDetailFragment(
+                hobbyList[position].nama ?: "",
+                hobbyList[position].judul ?: "",
+                hobbyList[position].paragraf ?: "",
+                hobbyList[position].photoUrl ?: "")
+            holder.itemView.findNavController().navigate(action)
         }
-
         val picasso = Picasso.Builder(holder.itemView.context)
         picasso.listener { picasso, uri, exception ->
             exception.printStackTrace()
@@ -48,7 +50,6 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
                     holder.binding.progressBar2.visibility = View.INVISIBLE
                     holder.binding.imageView3.visibility = View.VISIBLE
                 }
-
                 override fun onError(e: Exception?) {
                     Log.e("picasso_error", e.toString())
                 }

@@ -2,6 +2,7 @@ package com.ubaya.hobbyuts_160421134.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -19,18 +20,33 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        navController =
-            (supportFragmentManager.findFragmentById(R.id.navHost)
-                    as NavHostFragment).navController
-        NavigationUI.setupWithNavController(binding.navView, navController)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
+        navController = navHostFragment.navController
 
-        NavigationUI.setupActionBarWithNavController(this,navController,binding.drawerLayout)
+        // Setup ActionBar with NavController
+        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
 
+        // Setup BottomNavigationView with NavController
         binding.bottomNav.setupWithNavController(navController)
 
-    }
-    override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController,binding.drawerLayout) || super.onSupportNavigateUp()
+        // Setup NavigationView (drawer) with NavController
+        NavigationUI.setupWithNavController(binding.navView, navController)
+
+        // Listener untuk mengubah visibilitas NavigationView dan BottomNavigationView
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.loginFragment) {
+                // Sembunyikan NavigationView dan BottomNavigationView di LoginFragment
+                binding.navView.visibility = View.GONE
+                binding.bottomNav.visibility = View.GONE
+            } else {
+                // Tampilkan kembali NavigationView dan BottomNavigationView
+                binding.navView.visibility = View.VISIBLE
+                binding.bottomNav.visibility = View.VISIBLE
+            }
+        }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, binding.drawerLayout) || super.onSupportNavigateUp()
+    }
 }

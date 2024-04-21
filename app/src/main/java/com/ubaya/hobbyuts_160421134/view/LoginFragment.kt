@@ -1,5 +1,6 @@
 package com.ubaya.hobbyuts_160421134.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,6 @@ import com.ubaya.hobbyuts_160421134.viewmodel.LoginViewModel
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var viewModel: LoginViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +23,6 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -38,11 +37,11 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "Username dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
             }
         }
-
         viewModel.loginResultLD.observe(viewLifecycleOwner, Observer { user ->
             if (user != null && user.isNotEmpty()) {
                 val action = LoginFragmentDirections.actionHobbyListFragment()
                 findNavController().navigate(action)
+                saveLoginDetails(id)
             } else {
                 Toast.makeText(requireContext(), "Username atau Password salah", Toast.LENGTH_SHORT).show()
             }
@@ -51,6 +50,14 @@ class LoginFragment : Fragment() {
         binding.btnDaftar.setOnClickListener {
             val action = LoginFragmentDirections.actionRegisFragment()
             findNavController().navigate(action)
+        }
+    }
+    private fun saveLoginDetails(id: Int) {
+        val sharedPref = activity?.getSharedPreferences("myPref", Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            putInt("id", id)
+            putBoolean("isLoggedIn", true)
+            apply()
         }
     }
     override fun onDestroyView() {

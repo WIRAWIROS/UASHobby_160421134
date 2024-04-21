@@ -22,23 +22,25 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
         val binding = HobbyListItemBinding.inflate(LayoutInflater.from(parent.context), parent,false)
         return HobbyViewHolder(binding)
     }
-
     override fun getItemCount(): Int {
         return hobbyList.size
     }
-
     override fun onBindViewHolder(holder: HobbyViewHolder, position: Int) {
         holder.binding.txtJudul.text = hobbyList[position].judul
         holder.binding.txtNama.text = "@"+hobbyList[position].nama
         holder.binding.txtIsi.text = hobbyList[position].desc
 
+        val nama = hobbyList[position].nama ?: ""
+        val judul = hobbyList[position].judul ?: ""
+        val paragraf =hobbyList[position].paragraf ?: ""
+        val photoUrl =hobbyList[position].photoUrl ?: ""
         holder.binding.btnDetail.setOnClickListener {
-            val action = HobbyListFragmentDirections.actionHobbyDetailFragment(
-                hobbyList[position].nama ?: "",
-                hobbyList[position].judul ?: "",
-                hobbyList[position].paragraf ?: "",
-                hobbyList[position].photoUrl ?: "")
+            val action = HobbyListFragmentDirections.actionHobbyDetailFragment(nama, judul,paragraf,photoUrl)
             holder.itemView.findNavController().navigate(action)
+            val picasso = Picasso.Builder(holder.itemView.context)
+            picasso.listener { picasso, uri, exception ->
+                exception.printStackTrace()
+            }
         }
         val picasso = Picasso.Builder(holder.itemView.context)
         picasso.listener { picasso, uri, exception ->
